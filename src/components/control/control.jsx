@@ -23,9 +23,9 @@ const Control = ({name, value, onChangeLength}) => {
         {nameToUpperCase(name)} length
       </div>
       <div className="length-control--settings">
-        <button id={name + '-increment'} onClick={() => changeLength(length + 1)}>↑</button>
+        <button className="increment-button" id={name + '-increment'} onClick={() => changeLength(length + 1)}>↑</button>
         <div id={name + '-length'}>{length}</div>
-        <button id={name + '-decrement'} onClick={() => changeLength(length - 1)}>↓</button>
+        <button className="decrement-button" id={name + '-decrement'} onClick={() => changeLength(length - 1)}>↓</button>
       </div>
     </div>
   );

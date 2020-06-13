@@ -1,3 +1,12 @@
 .length-control--settings {
   display: flex;
 }
+
+.increment-button {
+  width: 50px;
+  height: 50px;
+}
+
+.increment-button:before {
+  content: '\e900';
+}
