@@ -2,19 +2,27 @@ import React, { useState, useEffect, Fragment } from 'react';
 import './clock.css';
 
 const Clock = ({ time, timeBreak }) => {
+
   const [length, setLength] = useState({
     isLength: true,
     isBreak: false,
     isPaused: true,
-    sessionTime: 1000 * 60 * time,
-    breakTime: 1000 * 60 * timeBreak
+    sessionTime: time,
+    breakTime: timeBreak
   });
-
-  console.log(length);
 
   useEffect(() => {
     let interval = null;
-    if (length.isPaused) return;
+
+    if (length.isPaused) {
+      if (length.sessionTime !== time) {
+        setLength({...length, sessionTime: time});
+      } else if (length.breakTime !== timeBreak) {
+        setLength({...length, breakTime: timeBreak});
+      } else {
+        return;
+      }
+    }
 
     if (length.isLength) {
       if (length.sessionTime > 0) {
@@ -45,11 +53,15 @@ const Clock = ({ time, timeBreak }) => {
       }
     }
     return () => clearInterval(interval);
-  }, [length, length.isPaused]);
+  }, [length, length.isPaused, time, timeBreak]);
 
   const formateDate = (time) => {
-    const digitFormat = (n) => ('0' + n).slice(-2);
-    const minutes = digitFormat(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+    const isSixty = (time) => time === 3600000 ? '60' : Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)); 
+    const digitFormat = (n) => {
+      return ('0' + n).slice(-2);
+    }
+    console.log(time)
+    const minutes = digitFormat(isSixty(time));
     const seconds = digitFormat(Math.floor((time % (1000 * 60)) / 1000));
 
     return `${minutes}:${seconds}`;
@@ -63,7 +75,7 @@ const Clock = ({ time, timeBreak }) => {
       </div>
       <div className="timer-control">
         <button
-          id="start-stop"
+          id="start_stop"
           onClick={() => setLength(prevValue => ({ ...prevValue, isPaused: !prevValue.isPaused }))}>
           Start/Stop
         </button>

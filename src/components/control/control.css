@@ -1,5 +1,11 @@
+#break-length, #session-length {
+  margin: 0px 5px;
+}
+
 .length-control--settings {
   display: flex;
+  -ms-align-items: center;
+  align-items: center;
 }
 
 .increment-button {
@@ -7,6 +13,7 @@
   height: 50px;
 }
 
-.increment-button:before {
-  content: '\e900';
+.btn-level {
+  border: 0;
+  background-color: transparent;
 }
