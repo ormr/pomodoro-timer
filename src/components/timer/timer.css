@@ -1,6 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap');
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .timer {
     font-family: 'Montserrat', sans-serif;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 10px;
+    width: 250px;
+    margin: 0px auto;
+    text-align: center;
 }
 
+.length-control--settings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.increment-button, .decrement-button {
+    width: 25px;
+    height: 25px;
+}
+  
+.btn-level {
+    border: 0;
+    background-color: transparent;
+}
+
+#break-length, #session-length {
+    text-align: center;
+    width: 50px;
+}
+
+#time-left {
+    font-family: 'Inconsolata', monospace;
+    font-size: 28px;
+}
